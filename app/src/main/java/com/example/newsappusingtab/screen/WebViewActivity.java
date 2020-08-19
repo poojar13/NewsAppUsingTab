@@ -13,8 +13,8 @@ import android.widget.RelativeLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
-import com.example.NewsBySourceUsingTab.R;
-import com.example.NewsBySourceUsingTab.databinding.ActivityWebViewBinding;
+import com.example.newsappusingtab.R;
+import com.example.newsappusingtab.databinding.ActivityWebViewBinding;
 
 
 public class WebViewActivity extends AppCompatActivity {

@@ -52,7 +52,6 @@ public class NewsListFragment extends Fragment {
         return binding.getRoot();
     }
 
-
     private void observeNewsBySourceData(){
         newsVM.newsbySourceresponseNetworkCom.getState().observe(this, new Observer<NetworkCom.States>() {
             @Override

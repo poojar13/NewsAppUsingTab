@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.newsappusingtab.R;
 import com.example.newsappusingtab.data.adapters.NewsPagerAdapter;
@@ -18,6 +19,7 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 
 public class MainActivity extends AppCompatActivity {
@@ -69,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showNewsInTab(ArrayList<Newsresponse.Articles> articlesArrayList) {
-        final LinkedHashSet<Newsresponse.Articles.NewsSource> newsSources = new LinkedHashSet<>();
+        final HashSet<Newsresponse.Articles.NewsSource> newsSources = new HashSet<>();
         final ArrayList<String> arrayList = new ArrayList<>();
         if (articlesArrayList.size() > 0) {
             for (int i = 0; i < articlesArrayList.size(); i++) {
@@ -87,26 +89,7 @@ public class MainActivity extends AppCompatActivity {
             binding.viewPager.setAdapter(newsPagerAdapter);
             binding.viewPager.setOffscreenPageLimit(1);
             binding.viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(binding.tablayout));
-            binding.tablayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-                @Override
-                public void onTabSelected(TabLayout.Tab tab) {
-                    HashMap<String, String> hashMap = new HashMap<>();
-
-                    hashMap.put("sources", arrayList.get(tab.getPosition()));
-                    hashMap.put("apiKey", "124bba32fc9d41d1ac0817f5a34a41e4");
-                    newsVM.getNewsBySource(hashMap);
-                }
-
-                @Override
-                public void onTabUnselected(TabLayout.Tab tab) {
-
-                }
-
-                @Override
-                public void onTabReselected(TabLayout.Tab tab) {
-
-                }
-            });
+            binding.tablayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(binding.viewPager));
         }
 
     }
